@@ -34,8 +34,14 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
+    implementation("org.springframework.boot:spring-boot-starter-webflux:3.4.0")
+    runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.113.Final")
+    implementation("io.netty:netty-all:4.1.115.Final")
 
+}
+springBoot {
+    mainClass.set("ru.krupnoveo.edu.record_service.RecordServiceApplication")
+}
 tasks.withType<Test> {
     useJUnitPlatform()
 }

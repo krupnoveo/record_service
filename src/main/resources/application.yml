@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: RECORD-SERVICE
+  datasource:
+    url: jdbc:postgresql://record_service_postgres:5432/record_db
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: false
+  config:
+    import: optional:file:../.env[.properties]
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+
+server:
+  port: 8082
