@@ -1,5 +1,7 @@
 package ru.krupnoveo.edu.record_service.api.client.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import ru.krupnoveo.edu.record_service.api.client.UserClient;
@@ -14,13 +16,17 @@ import java.util.UUID;
 
 @Service
 public class UserClientImpl implements UserClient {
-    private static final String USER_SERVICE_URL = "http://localhost:8080";
 
     private final WebClient webClient;
 
-    public UserClientImpl() {
-        this.webClient = WebClient.builder().baseUrl(USER_SERVICE_URL).build();
+    public UserClientImpl(
+            @Autowired WebClient.Builder webClient,
+            @Value("${user.service.name}") String userServiceName
+    ) {
+        String baseUrl = "http://" + userServiceName;
+        this.webClient = webClient.baseUrl(baseUrl).build();
     }
+
 
     @Override
     public ClientInfoResponse getClientInfo(UUID id) {

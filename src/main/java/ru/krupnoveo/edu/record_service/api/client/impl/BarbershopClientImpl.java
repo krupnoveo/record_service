@@ -1,5 +1,7 @@
 package ru.krupnoveo.edu.record_service.api.client.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import ru.krupnoveo.edu.record_service.api.client.BarbershopClient;
@@ -12,13 +14,17 @@ import java.util.UUID;
 
 @Service
 public class BarbershopClientImpl implements BarbershopClient {
-    private static final String BARBERSHOP_SERVICE_URL = "http://localhost:8081";
 
     private final WebClient webClient;
 
-    public BarbershopClientImpl() {
-        this.webClient = WebClient.builder().baseUrl(BARBERSHOP_SERVICE_URL).build();
+    public BarbershopClientImpl(
+            @Autowired WebClient.Builder webClient,
+            @Value("${barbershop.service.name}") String barbershopServiceName
+    ) {
+        String baseUrl = "http://" + barbershopServiceName;
+        this.webClient = webClient.baseUrl(baseUrl).build();
     }
+
 
     @Override
     public BarbershopInfoResponse getBarbershopInfo(UUID id) {

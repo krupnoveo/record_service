@@ -58,7 +58,7 @@ public class AvailableTimeServiceImpl implements AvailableTimeService {
         int count = 8 - temp.getDayOfWeek().getValue();
 
         for (int i = 0; i < count; i++) {
-            LocalTime time = LocalTime.of(10, 0);
+            LocalTime time = LocalTime.of(7, 0);
             for (int j = 0; j < 12; j++) {
                 times.add(OffsetDateTime.of(today, time, OffsetDateTime.now().getOffset()));
                 time = time.plusHours(1);

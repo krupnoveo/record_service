@@ -37,6 +37,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux:3.4.0")
     runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.113.Final")
     implementation("io.netty:netty-all:4.1.115.Final")
+    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.2.0")
+
 
 }
 springBoot {

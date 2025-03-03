@@ -1,8 +1,8 @@
 spring:
   application:
-    name: RECORD-SERVICE
+    name: ${record.service.name}
   datasource:
-    url: jdbc:postgresql://record_service_postgres:5432/record_db
+    url: jdbc:postgresql://${postgres.host}:${postgres.port}/record_db
     username: ${DB_USER}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
@@ -13,7 +13,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.service.host}:${eureka.service.port}/eureka
 
 server:
-  port: 8082
+  port: ${record.service.port}
