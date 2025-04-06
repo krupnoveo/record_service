@@ -57,14 +57,20 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public List<RecordResponse> getAllRecords(String token) {
+    public List<RecordResponse> getAllRecords(String token, UUID barbershopId) {
         List<RecordEntity> records;
         var user = userClient.getClientInfo(token);
 
         if (user.role().equals("BARBER")) {
             records = recordRepository.findAllByBarberId(user.id());
-        } else {
+        } else if (user.role().equals("CLIENT")) {
             records = recordRepository.findAllByClientId(user.id());
+        } else  {
+            if (barbershopId != null) {
+                records = recordRepository.findAllByBarbershopId(barbershopId);
+            } else {
+                records = recordRepository.findAll();
+            }
         }
 
         return records.stream().map(a -> getRecordById(a.getId())).toList();

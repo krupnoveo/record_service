@@ -1,5 +1,7 @@
 package ru.krupnoveo.edu.record_service.service.impl;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.krupnoveo.edu.record_service.api.client.UserClient;
@@ -18,6 +20,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AvailableTimeServiceImpl implements AvailableTimeService {
     private final JpaAvailableTimeRepository availableTimeRepository;
@@ -51,11 +54,11 @@ public class AvailableTimeServiceImpl implements AvailableTimeService {
 
     @Override
     public void updateAvailableTimes() {
-        availableTimeRepository.deleteAllByTimeIsBefore(OffsetDateTime.now());
+        //availableTimeRepository.deleteAllByTimeIsBefore(OffsetDateTime.now());
         List<OffsetDateTime> times = new ArrayList<>();
         LocalDate today = LocalDate.now();
         LocalDate temp = today;
-        int count = 8 - temp.getDayOfWeek().getValue();
+        int count = 15 - temp.getDayOfWeek().getValue();
 
         for (int i = 0; i < count; i++) {
             LocalTime time = LocalTime.of(7, 0);

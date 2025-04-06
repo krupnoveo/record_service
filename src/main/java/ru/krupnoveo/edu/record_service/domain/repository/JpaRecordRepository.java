@@ -14,4 +14,6 @@ public interface JpaRecordRepository extends JpaRepository<RecordEntity, UUID> {
     List<RecordEntity> findAllByBarberId(UUID barberId);
 
     List<RecordEntity> findAllByTimeId_Id(UUID timeIdId);
+
+    List<RecordEntity> findAllByBarbershopId(UUID barbershopId);
 }

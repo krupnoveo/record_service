@@ -52,8 +52,8 @@ public class BarbershopClientImpl implements BarbershopClient {
             return new ServiceInfoResponse("", -1);
         }
         return switch (grade) {
-            case "1" -> new ServiceInfoResponse(resp.name(), resp.firstGradePrice());
-            case "2" -> new ServiceInfoResponse(resp.name(), resp.secondGradePrice());
+            case "Младший барбер" -> new ServiceInfoResponse(resp.name(), resp.firstGradePrice());
+            case "Топ-барбер" -> new ServiceInfoResponse(resp.name(), resp.secondGradePrice());
             default -> new ServiceInfoResponse(resp.name(), resp.thirdGradePrice());
         };
     }

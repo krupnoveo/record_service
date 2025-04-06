@@ -27,10 +27,11 @@ public class RecordController {
 
     @GetMapping("/all")
     public ResponseEntity<ListRecordResponse> getAllRecords(
-            @RequestHeader("Authorization") String token
+            @RequestHeader("Authorization") String token,
+            @RequestParam(required = false) UUID barbershopId
     ) {
         return ResponseEntity.ok().body(
-                new ListRecordResponse(recordService.getAllRecords(token))
+                new ListRecordResponse(recordService.getAllRecords(token, barbershopId))
         );
     }
 

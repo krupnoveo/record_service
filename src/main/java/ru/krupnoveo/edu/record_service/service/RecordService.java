@@ -10,7 +10,7 @@ import java.util.UUID;
 public interface RecordService {
     RecordResponse getRecordById(UUID id);
 
-    List<RecordResponse> getAllRecords(String token);
+    List<RecordResponse> getAllRecords(String token, UUID barbershopId);
 
     RecordResponse deleteRecordById(UUID id);
 

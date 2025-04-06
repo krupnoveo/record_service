@@ -1,5 +1,6 @@
 package ru.krupnoveo.edu.record_service.scheduler;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.krupnoveo.edu.record_service.service.AvailableTimeService;
